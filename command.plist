@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>author</key>
+	<string>David Hunt</string>
+	<key>category</key>
+	<string>Query Editor</string>
+	<key>command</key>
+	<string>#!/usr/local/bin/node
+
+var knexPath = process.env.SP_BUNDLE_PATH + '/node_modules/knex/knex';
+var knex = require(knexPath)({ client: 'mysql' });
+var code = '';
+
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('readable', function() {
+	var text = process.stdin.read();
+	if (text !== null &amp;&amp; text !== 'null') {
+		code += text;
+	}
+});
+
+process.stdin.on('end', function () {
+	var query;
+	var evalResult = eval('query = ' + code);
+	
+	process.stdout.write(query.toString());
+});</string>
+	<key>contact</key>
+	<string>qnivq@fcver.zr</string>
+	<key>description</key>
+	<string>Write SQL queries in KnexJS right in your query editor!</string>
+	<key>input</key>
+	<string>entirecontent</string>
+	<key>internalKeyEquivalent</key>
+	<dict>
+		<key>characters</key>
+		<string>K</string>
+		<key>keyCode</key>
+		<integer>40</integer>
+		<key>modifierFlags</key>
+		<integer>262144</integer>
+	</dict>
+	<key>keyEquivalent</key>
+	<string>^k</string>
+	<key>name</key>
+	<string>Knex2SQL</string>
+	<key>output</key>
+	<string>replacecontent</string>
+	<key>scope</key>
+	<string>inputfield</string>
+	<key>uuid</key>
+	<string>7AFB70C9-4C67-4E15-B258-5AD672C48BC7</string>
+</dict>
+</plist>
