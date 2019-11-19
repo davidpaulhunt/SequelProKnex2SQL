@@ -6,6 +6,6 @@
     "email": "david@spire.me"
   },
   "dependencies": {
-    "knex": "^0.9.0"
+    "knex": "^0.20.2"
   }
 }
